@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% block addition %}
+
+{% if state == 4 %}
+    {% url 'list_Professors' as dismiss_url %}
+{% else %}
+    {% url 'list_Students' as dismiss_url %}
+{% endif %}
+
+
+<form method="post">
+    {% csrf_token %}
+    <div class="addition_block">
+        <div class="user_form_1">
+            {{ form.as_p }}
+        </div>
+
+
+        <div class="user_form_2">
+            <a href="{{ dismiss_url }}">Dismiss</a>
+            <input type="submit" value="Save">
+        </div>
+        
+        
+        <br><br>
+        {% if flag %}
+            <p id="spec_p">Uh-oh something's wrong!</p>
+        {% endif %}
+    </div>
+    
+    <!-- {{ request.path}} -->   
+</form>
+
+{% endblock %}

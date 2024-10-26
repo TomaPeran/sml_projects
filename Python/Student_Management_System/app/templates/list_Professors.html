@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+{% block lists %}
+
+<form method="get" action="{% url 'add_Professor' %}?source={{ request.path }}">
+    {% csrf_token %}
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li>
+                    <a href="{% url 'list_Students' %}">Students</a>
+                </li>
+                <li>
+                    <a href="#">Professors</a>
+                </li>
+                <li>
+                    <a href="{% url 'list_Subjects' %}">Subjects</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    
+    <br>
+    {% for professor in data %}
+    	<div class="list_box">
+            <div class="list_box_1">
+                <ul>
+                    <li>
+                        <p><strong>Name</strong>: {{professor.first_name}}</p>
+                    </li>
+                    <li>
+                        <p>{{professor.last_name}} <strong>|</strong> </p>
+                    </li>
+                    <li>
+                        <p><strong>Email</strong>: {{professor.email}}</p>
+                    </li>
+                </ul>    
+            </div>
+            <div class="list_box_2">
+                <div class="more_buttons">
+                    <a href="{% url 'edit_User' professor.id %}" class="link_Button">Edit</a>
+                </div>
+                <div class="more_buttons">
+                    <a href="{% url 'confirm_User' professor.id %}" class="link_Button">Delete</a>
+                </div>
+                <div class="more_buttons">
+                    <a href="{% url 'prof_Subjects' professor.id %}" class="link_Button">List Subjects</a>
+                </div>
+            </div>
+
+            
+        </div>
+    {% endfor %}
+
+    <br><br>
+
+    <input type="submit" value="Add New Professor" class="lower_button">
+
+</form>
+
+{% endblock %}

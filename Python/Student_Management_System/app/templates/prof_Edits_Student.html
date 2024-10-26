@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block edits %}
+
+
+<form method="post">
+    {% csrf_token %}
+    <div class="addition_block">
+        <div class="user_form_1">
+            {{ form.as_p }}
+        </div>
+    
+    
+        <div class="user_form_2">
+            <a href="{% url 'subject_Students' subject prof %}">Dismiss</a>
+            <input type="submit" value="Save">
+        </div>
+        
+        
+    </div>
+</form>
+
+{% endblock %}
+

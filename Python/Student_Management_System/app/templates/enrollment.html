@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% block enrollment %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="addition_block">
+        <div class="user_form_1">
+            {{ form.as_p }}
+        </div>
+    
+        {% if data %}
+            <p>User already existing!</p>
+            <br><br>
+        {% endif %}
+
+        <div class="user_form_2">
+            <a href="{% url 'list_Students' %}">Dismiss</a>
+            <input type="submit" value="Save">
+        </div>
+        
+        
+    </div>
+</form>
+
+{% endblock %}
+
+

@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% block lists %}
+
+<form method="get">
+    {% csrf_token %}
+
+    <br>
+    {% for student in data %}
+    <div class="list_box">
+        <div class="list_box_1">
+            <ul>
+                <li><p><strong>Name</strong>: {{student.student_id.first_name}}</p></li>
+                <li><p>{{student.student_id.last_name}} <strong>|</strong> </p></li>
+                <li><p><strong>Email</strong>: {{student.student_id.email}}</p></li>
+                <li><p><strong>Status</strong>: {{student.status}}</p></li>
+            </ul>    
+        </div>
+        <div class="list_box_2">
+            {% if student.status != 'Polozen' and student.status != 'Izgubio potpis'%}
+            <div class="more_buttons">
+                <a href="{%url 'prof_Edits_Student' subject=subject student=student.student_id.id prof=prof %}">Edit Students Status</a>
+            </div>
+            {% elif not prof %}
+            <div class="more_buttons">
+                <a href="{%url 'prof_Edits_Student' subject=subject student=student.student_id.id prof=prof %}">Edit Students Status</a>        
+            </div>
+            {% endif %}
+            <div class="more_buttons">
+                <a href="{% url 'student_Details' student=student.student_id.id prof=prof subject=subject%}">Student Details</a>
+            </div>
+
+        </div>    
+    </div>
+    {% endfor %}
+
+
+    {% if prof %}
+    <div class="lower_button">
+        <a href="{% url 'prof_Subjects' prof %}">Go Back</a>
+    </div>
+    {% else %}
+    <div class="lower_button">
+        <a href="{% url 'list_Subjects'%}">Go Back</a>
+    </div>
+    {% endif %}
+    
+
+</form>
+
+{% endblock %}

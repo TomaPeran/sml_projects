@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% block lists %}
+
+<form method="post">
+    <header>
+        <nav>
+            <ul>
+                <li style="font-size: 18px;">{{ student.first_name }} {{ student.last_name }}</li>
+                <li></li>
+                <li></li>
+                <li style="font-size: 18px;">{{ student.email }}</li>
+            </ul>
+        </nav>
+        <a href="{% url 'list_Students' %}" id="spec_back">Go Back</a>
+    </header>
+    
+    {% for info in data %}
+        <div class="list_box">
+            <div class="list_box_1">
+                <ul>
+                    <li><p><strong>Name</strong>: {{info.subject_id.name}} | </p></li>
+                    <li><p><strong>Ects</strong>: {{info.subject_id.ects}} | </p></li>
+                    <li><p><strong>Semester</strong>: {{info.subject_id.semester}} | </p></li>
+                    <li><p><strong>Professor</strong>: {{info.subject_id.professor}}</p></li>
+                </ul>
+
+            </div>
+            <div class="list_box_2">
+                {% with info.id as enroll_id %}
+                <a href="{% url 'confirm_Enrollment' enroll_id student.id %}" class="more_buttons">Delete Enrollment Form</a>
+                <a href="{% url 'edit_Enrollments' enroll_id%}" class="more_buttons">Edit Enrollment Form</a>
+                {% endwith %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <br><br>
+    <div class="list_box_3">
+        <a href="{% url 'enrollment_Insertion' student.id%}" class="more_buttons">New Enrollment Form</a>
+    </div>
+</form>
+
+{% endblock %}

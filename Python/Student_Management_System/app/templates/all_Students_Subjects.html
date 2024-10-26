@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% block lists %}
+
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li>
+                    <a href="{% url 'enrolled_Subjects' id=student %}">Enrolled Subjects</a>
+                </li>
+                <li>
+                    <a href="#">All Subjects</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <br>
+    {% for subject in data %}
+    <div class="list_box">
+        <div class="list_box_1">
+            <ul>
+                <li><p><strong>Name</strong>: {{subject.name}} <strong>|</strong> </p></li>
+                <li><p><strong>Code</strong>: {{subject.code}} <strong>|</strong> </p></li>
+                <li><p><strong>Ects</strong>: {{subject.ects}}</p></li>
+                <!-- <li><p><strong>Professor</strong>: {{subject.professor_id}}</p></li>  -->
+                <!-- umjesto imena profesora mozda stavit email ili cak prezime -->
+            </ul>
+        </div>
+
+        <div class="list_box_2">
+            <form method="post" action="{% url 'add_to_Subjects' subject.id student %}">
+                <div class="more_buttons">
+                    {% csrf_token %}    
+                    <input type="submit" value="Add Subject">
+                </div>
+            </form>
+        </div>
+            
+            
+    </div>
+        
+    {% endfor %}
+    <a href="{%url 'tmp' student%}" style="position: absolute; right: 5%;">3_semestar</a>
+    
+
+{% endblock %}

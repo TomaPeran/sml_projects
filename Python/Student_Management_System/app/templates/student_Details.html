@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% block details %}
+
+<form method="get">
+    {% csrf_token %}
+    <div class="addition_block">
+        <div class="status_form_0">
+            <p><strong>STUDENT</strong></p>
+        </div>
+        <div class="status_form_1">
+            <ul>
+                <li><p><strong>First Name</strong>:&ensp;&ensp;&ensp; {{ details.first_name }}</p></li>
+                <li><p><strong>Last Name</strong>:&ensp;&ensp;&ensp; {{ details.last_name }}</p></li>
+                <li><p><strong>Email</strong>:&ensp;&ensp;&ensp; {{ details.email }}</p></li>
+                <li><p><strong>Status</strong>:&ensp;&ensp;&ensp; {{ details.status }}</p></li>
+            </ul>
+        </div>
+        <div class="status_form_2">
+            <a href="{%url 'subject_Students' subject prof %}" class="more_buttons">Go Back</a>
+        </div>
+    </div>
+</form>
+
+{% endblock %}  

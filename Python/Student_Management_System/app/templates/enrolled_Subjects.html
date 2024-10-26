@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% block lists %}
+
+<form method="post">
+    {% csrf_token %}
+    <header>
+        <nav>
+            <ul>
+                <li> 
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li> 
+                    <a href="#">Enrolled Subjects</a>
+                </li>
+                <li> 
+                    <a href="{% url 'all_Students_Subjects' id=student %}">All Subjects</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <br>
+    {% for enr in enroll%}
+
+        {% for subject in data %}
+            {% if enr.subject_id_id == subject.id %}
+            <div class="list_box">
+                <div class="list_box_1">
+                    <ul>
+                        <li><p><strong>Name</strong>: {{subject.name}} <strong>|</strong> </p></li>
+                        <li><p><strong>Code</strong>: {{subject.code}} <strong>|</strong> </p></li>
+                        <li><p><strong>Ects</strong>: {{subject.ects}}</p></li>
+                        <!-- <li><p><strong>Professor</strong>: {{subject.professor_id}}</p></li>  -->
+                        <!-- umjesto imena profesora mozda stavit email ili cak prezime -->
+                    </ul>
+                </div>
+                <div class="list_box_2">
+                    <div class="more_buttons">
+                        <a href="{% url 'confirm_Enrollment' enr.id student %}">Remove Subject</a>
+                    </div>
+                </div>
+                
+            </div>
+            {%endif%}
+        {%endfor%}
+    {%endfor%}
+    
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block login %}
+
+
+<form method="post">
+    
+    {% csrf_token %}
+    <div id="login_container">
+        <div id="login_container_1">
+            {% if data %}
+                <br>
+                <p>Uh_oh something's wrong</p>
+                <br>
+            {% endif %}
+        </div>
+        <div id="login_container_2">
+            {{ form.as_p}}
+            <input type="submit" name="Login" value="Login" id="login_button"> <br>
+        </div>
+          
+    </div>
+
+
+</form>
+
+{% endblock %}

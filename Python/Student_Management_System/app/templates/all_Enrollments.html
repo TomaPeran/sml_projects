@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% block enrollment %}
+
+<form method="post">
+    {% for ness in data %}
+        <div style="border: 1px solid black">
+            <p>{{ness.student_id}}</p>
+            <p>{{ness.subject_id}}</p>
+            <p>{{ness.status}}</p>
+        </div>
+        {% with id=ness.id %}
+        <a href="{% url 'edit_Enrollments' id %}">Edit</a>        
+        <a href="">Delete</a>
+        {% endwith %}
+    {%endfor%}
+
+</form>
+
+{% endblock %}

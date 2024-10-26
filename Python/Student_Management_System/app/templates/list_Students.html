@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% block lists %}
+
+<form method="get" action="add_Student">
+    {% csrf_token %}
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li>
+                    <a href="#">Students</a>
+                </li>
+                <li>
+                    <a href="{% url 'list_Professors' %}">Professors</a>
+                </li>
+                <li>
+                    <a href="{% url 'list_Subjects' %}">Subjects</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <br>
+    {% for student in data %}
+    <div class="list_box">
+        <div class="list_box_1">
+            <ul>
+                <li><p><strong>Name</strong>: {{student.first_name}}</p></li>
+                <li><p>{{student.last_name}} <strong>|</strong> </p></li>
+                <li><p><strong>Email</strong>: {{student.email}}</p></li>
+            </ul>    
+        </div>
+        <div class="list_box_2">
+            <div class="more_buttons">
+                <a href="{% url 'student_Enrollment' student.id %}">Enrollment Form</a>
+            </div>
+            <div class="more_buttons">
+                <a href="{% url 'edit_User' student.id %}">Edit</a>
+            </div>
+            <div class="more_buttons">
+                <a href="{% url 'confirm_User' student.id %}">Delete</a>
+            </div>
+        </div>
+    <!-- link umjesto botuna jer koriste get, i lakse je redirectat, u css promjenit izgled u botun -->
+    </div>
+    {% endfor %}
+
+    <br><br>
+    <input type="submit" value="Add New Student" class="lower_button">
+
+    <a href="{%url 'tmp_1' %}" style="position: absolute; right: 15%;">30_ects</a>
+
+</form>
+
+{% endblock %}

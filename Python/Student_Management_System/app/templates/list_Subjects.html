@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% block lists %}
+
+<form method="get" action="{% url 'add_Subject' %}">
+    {% csrf_token %}
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li>
+                    <a href="{% url 'list_Students' %}">Students</a>
+                </li>
+                <li>
+                    <a href="{% url 'list_Professors' %}">Professors</a>
+                </li>
+                <li>
+                    <a href="#">Subjects</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <br>
+    {% for subject in data %}
+    <div class="list_box">
+        <div class="list_box_1">
+            <ul>
+                <li><p><strong>Name</strong>: {{subject.name}} <strong>|</strong> </p></li>
+                <li><p><strong>Code</strong>: {{subject.code}} <strong>|</strong> </p></li>
+                <li><p><strong>Ects</strong>: {{subject.ects}}</p></li>
+                <!-- <li><p><strong>Professor</strong>: {{subject.professor_id}}</p></li>  -->
+                <!-- umjesto imena profesora mozda stavit email ili cak prezime -->
+            </ul>
+        </div>
+        <div class="list_box_2">
+            <div class="more_buttons">
+                <a href="{% url 'subject_Students' id=subject.id prof_id=0%}">Students</a>
+            </div>
+            <div class="more_buttons">
+                <a href="{% url 'edit_Subject' subject.id %}">Edit</a>
+            </div>
+            <div class="more_buttons">
+                <a href="{% url 'confirm_Subject' subject.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <br><br>
+    <input type="submit" value="Add New Subject" class="lower_button">
+
+</form>
+
+{% endblock %}
