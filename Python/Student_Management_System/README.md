@@ -24,10 +24,10 @@ So as an Administrator (or Admin) I am kinda special type of user, I am responsi
 There is a lot of elementary stuff in the begining of this document, but all of those components are what it takes to make a student management system. Down here are just some ideas that will make this application become better and more appealing.
 
 #### Visual Improvements
-- [] Adding more colorful look making it more appealing
-- [] Light/Dark switch
+ [] Adding more colorful look making it more appealing
+ [] Light/Dark switch
 
 #### Developer Improvements
-- [] Responsive design
-- [] Translate code to english
-- [] Beautify views.py code
+ [] Responsive design
+ [] Translate code to english
+ [] Beautify views.py code
