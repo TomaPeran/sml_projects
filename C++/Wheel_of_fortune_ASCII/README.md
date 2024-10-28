@@ -25,7 +25,7 @@ Installation is possible via a .zip file; further instructions are provided for 
 2. Navigate to the folder:
 
    ```bash
-    Wheel_of_fortune_ASCII/Wheel_of_fortuneSetup/Debug
+    Wheel_of_fortune_ASCII/Setup/Debug
 
 
 3. Double-click on `setup.exe` to start the installation process automatically. Make sure to accept all options.
